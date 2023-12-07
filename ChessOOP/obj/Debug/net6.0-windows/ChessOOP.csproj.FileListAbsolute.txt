@@ -1,0 +1,16 @@
+E:\dev\ChessOOP\ChessOOP\obj\Debug\net6.0-windows\ChessOOP.Form1.resources
+E:\dev\ChessOOP\ChessOOP\obj\Debug\net6.0-windows\ChessOOP.csproj.GenerateResource.cache
+E:\dev\ChessOOP\ChessOOP\obj\Debug\net6.0-windows\ChessOOP.GeneratedMSBuildEditorConfig.editorconfig
+E:\dev\ChessOOP\ChessOOP\obj\Debug\net6.0-windows\ChessOOP.AssemblyInfoInputs.cache
+E:\dev\ChessOOP\ChessOOP\obj\Debug\net6.0-windows\ChessOOP.AssemblyInfo.cs
+E:\dev\ChessOOP\ChessOOP\obj\Debug\net6.0-windows\ChessOOP.csproj.CoreCompileInputs.cache
+E:\dev\ChessOOP\ChessOOP\bin\Debug\net6.0-windows\ChessOOP.exe
+E:\dev\ChessOOP\ChessOOP\bin\Debug\net6.0-windows\ChessOOP.deps.json
+E:\dev\ChessOOP\ChessOOP\bin\Debug\net6.0-windows\ChessOOP.runtimeconfig.json
+E:\dev\ChessOOP\ChessOOP\bin\Debug\net6.0-windows\ChessOOP.dll
+E:\dev\ChessOOP\ChessOOP\bin\Debug\net6.0-windows\ChessOOP.pdb
+E:\dev\ChessOOP\ChessOOP\obj\Debug\net6.0-windows\ChessOOP.dll
+E:\dev\ChessOOP\ChessOOP\obj\Debug\net6.0-windows\refint\ChessOOP.dll
+E:\dev\ChessOOP\ChessOOP\obj\Debug\net6.0-windows\ChessOOP.pdb
+E:\dev\ChessOOP\ChessOOP\obj\Debug\net6.0-windows\ChessOOP.genruntimeconfig.cache
+E:\dev\ChessOOP\ChessOOP\obj\Debug\net6.0-windows\ref\ChessOOP.dll
