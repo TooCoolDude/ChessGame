@@ -25,7 +25,7 @@ namespace ChessOOP
             this.player = player;
         }
 
-        protected Image GetImage(int figure)
+        protected static Image GetImage(int figure, Player player)
         {
             var i = Images.Clone(new Rectangle(333 * figure, ((int)player - 1) * 333, 333, 333),
                         Images.PixelFormat);
@@ -54,6 +54,7 @@ namespace ChessOOP
                 field[CurrentPosition.Item1, CurrentPosition.Item2] = null;
                 field.NextPlayer();
             }
+
         }
 
     }

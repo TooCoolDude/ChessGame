@@ -14,11 +14,16 @@ namespace ChessOOP
         {
             get
             {
-                return base.GetImage(0);
+                return player == Player.White ? GetWhiteImage : GetBlackImage;
             }
         }
 
+        private static Image GetWhiteImage { get; } = GetImage(0, Player.White);
+
+        private static Image GetBlackImage { get; } = GetImage(0, Player.Black);
+
         bool isFirstMove = true;
+        bool isCheckingMoves = false;
 
         public override List<(int, int)> GetPossibleMoves(ChessField field)
         {
@@ -27,15 +32,15 @@ namespace ChessOOP
             var list = new List<(int, int)>();
             int reverse = player == Player.White ? -1 : 1;
             var enemy = player == Player.White ? Player.Black : Player.White;
-
+            
             var dangerousMoves = GetDangerousMoves(field);
-            for (int i = -1; i < 1; i++)
+            for (int i = -1; i < 2; i++)
             {
-                for (int j = -1; j < 1; j++)
+                for (int j = -1; j < 2; j++)
                 {
                     if (ValidateMove(y + i * reverse, x + j))
                     {
-                        if (field[y + i * reverse, x + j] == null || field[y + i * reverse, x + j].player == enemy
+                        if ((field[y + i * reverse, x + j] == null || field[y + i * reverse, x + j].player == enemy)
                             && !dangerousMoves.Contains((y + i * reverse, x + j)))
                             list.Add((y + i * reverse, x + j));
                     }
@@ -48,12 +53,12 @@ namespace ChessOOP
         {
             var list = new List<(int, int)>();
             var enemy = player == Player.White ? Player.Black : Player.White;
-            
+
             for (int i = 0; i < 8; i++)
             {
                 for (var j = 0; j < 8; j++)
                 {
-                    if (field[i, j] != null && field[i, j].player == enemy && field[i, j] is not King)
+                    if (field[i, j] != null && field[i, j].player == enemy && (field[i, j] is not King))
                     {
                         list.AddRange(field[i, j].GetPossibleMoves(field));
                     }

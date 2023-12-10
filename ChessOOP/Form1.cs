@@ -114,26 +114,31 @@ namespace ChessOOP
         private void buttonClick(object sender, EventArgs e)
         {
             var s = (Button)sender;
+            //—тереть возможные ходы и отменить выбор фигуры
             if (figureOnButton[s] is Figure && figureOnButton[s].player == chessField.CurrentPlayer && s == selectedFigureButton && possibleMovesButtons.Count > 0)
             {
                 ErasePossibleMovesButtons();
             }
+            //¬ыбрать фигуру и показать возможные ходы
             else if (figureOnButton[s] is Figure && figureOnButton[s].player == chessField.CurrentPlayer && selectedFigureButton == null)
             {
                 selectedFigureButton = s;
                 SeePossibleMovesButtons(s);
             }
+            //¬ыбрать другую фигуру, показать возможные ходы
             else if (figureOnButton[s] is Figure && figureOnButton[s].player == chessField.CurrentPlayer && selectedFigureButton != null)
             {
                 ErasePossibleMovesButtons();
                 selectedFigureButton = s;
                 SeePossibleMovesButtons(s);
             }
+            //—делать ход, стереть возможные ходы
             else if ((figureOnButton[s] == null || figureOnButton[s].player != chessField.CurrentPlayer) && possibleMovesButtons.Contains(s) && selectedFigureButton != null)
             {
                 figureOnButton[selectedFigureButton].MakeMove(buttonsPositions[s], chessField);
                 ErasePossibleMovesButtons();
             }
+            //—тереть возможные ходы нажатием на пустое место или не атакуемую фигуру противника
             else if ((figureOnButton[s] == null || figureOnButton[s].player != chessField.CurrentPlayer) && !possibleMovesButtons.Contains(s) && selectedFigureButton != null)
             {
                 ErasePossibleMovesButtons();
@@ -161,6 +166,5 @@ namespace ChessOOP
             PaintButton(selectedFigureButton);
             possibleMovesButtons = new();
         }
-
     }
 }

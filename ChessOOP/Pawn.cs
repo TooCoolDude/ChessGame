@@ -10,14 +10,18 @@ namespace ChessOOP
     {
         public Pawn(Player player) : base(player) { }
 
-        public override Image Img 
+        public override Image Img
         {
             get
             {
-                return base.GetImage(5);
+                return player == Player.White ? GetWhiteImage : GetBlackImage;
             }
         }
-        
+
+        private static Image GetWhiteImage { get; } = GetImage(5, Player.White);
+
+        private static Image GetBlackImage { get; } = GetImage(5, Player.Black);
+
         bool isFirstMove = true;
 
        public override List<(int, int)> GetPossibleMoves(ChessField field)
