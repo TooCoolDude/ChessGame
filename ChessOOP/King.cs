@@ -22,6 +22,15 @@ namespace ChessOOP
 
         private static Image GetBlackImage { get; } = GetImage(0, Player.Black);
 
+        public override Figure Copy()
+        {
+            var c = new King(this.player);
+            c.CurrentPosition = this.CurrentPosition;
+            c.isCheckingMoves = this.isCheckingMoves;
+            c.isFirstMove = this.isFirstMove;
+            return c;
+        }
+
         bool isFirstMove = true;
         bool isCheckingMoves = false;
 

@@ -20,6 +20,22 @@ namespace ChessOOP
             { new Rook(Player.White), new Knight(Player.White), new Bishop(Player.White), new Queen(Player.White), new King(Player.White), new Bishop(Player.White), new Knight(Player.White), new Rook(Player.White) },
         };
 
+        public ChessField Copy()
+        {
+            var c = new ChessField();
+            c.field = new Figure?[8, 8];
+            for (int i = 0; i < 8; i++)
+                for (int j = 0; j < 8; j++)
+                {
+                    if (this[i,j] != null)
+                    {
+                        c[i,j] = this[i, j].Copy();
+                    }
+                }
+            c.currentPlayer = this.currentPlayer;
+            return c;
+        }
+
         public bool[,] WhiteKingDangerousCells = new bool[8, 8];
 
         public bool[,] BlackKingDangerousCells = new bool[8, 8];

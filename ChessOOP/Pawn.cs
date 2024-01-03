@@ -22,6 +22,14 @@ namespace ChessOOP
 
         private static Image GetBlackImage { get; } = GetImage(5, Player.Black);
 
+        public override Figure Copy()
+        {
+            var c = new Pawn(this.player);
+            c.CurrentPosition = this.CurrentPosition;
+            c.isFirstMove = this.isFirstMove;
+            return c;
+        }
+
         bool isFirstMove = true;
 
        public override List<(int, int)> GetPossibleMoves(ChessField field)

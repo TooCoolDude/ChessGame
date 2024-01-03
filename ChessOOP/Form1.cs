@@ -150,9 +150,35 @@ namespace ChessOOP
         {
             var moves = figureOnButton[b].GetPossibleMoves(chessField);
             foreach (var move in moves)
-            { 
-                possibleMovesButtons.Add(buttons[move.Item1, move.Item2]);
-                buttons[move.Item1, move.Item2].BackColor = Color.Green;
+            {
+                var chessCopy = chessField.Copy();
+                chessCopy[figureOnButton[b].CurrentPosition.Item1, figureOnButton[b].CurrentPosition.Item2].MakeMove(move, chessCopy);
+
+                bool legalMove = true;
+
+                for (var i = 0; i < 8; i++)
+                {
+                    for (var j = 0; j < 8; j++)
+                    {
+                        if (chessCopy[i, j] is { } figure)
+                        {
+                            var figureMoves = figure.GetPossibleMoves(chessCopy);
+                            if (figure.GetPossibleMoves(chessCopy).Any(to =>
+                            {
+                                return chessCopy[to.Item1, to.Item2] is King;
+                            }))
+                            {
+                                legalMove = false;
+                                break;
+                            }
+                        }
+                    }
+                }
+                if (legalMove)
+                {
+                    possibleMovesButtons.Add(buttons[move.Item1, move.Item2]);
+                    buttons[move.Item1, move.Item2].BackColor = Color.Green;
+                }
             }
             b.BackColor = Color.Yellow;
         }

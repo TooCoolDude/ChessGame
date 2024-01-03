@@ -44,7 +44,7 @@ namespace ChessOOP
             if (y < 8 && y >= 0 && x < 8 && x >= 0)
                 return true;
             return false;
-       }
+        }
 
         public virtual void MakeMove((int, int) nextPosition, ChessField field)
         {
@@ -55,6 +55,11 @@ namespace ChessOOP
                 field.NextPlayer();
             }
 
+        }
+
+        public virtual Figure Copy() 
+        {
+            return null;
         }
 
     }
