@@ -25,7 +25,7 @@ namespace ChessOOP
             this.player = player;
         }
 
-        protected Image GetImage(int figure)
+        protected static Image GetImage(int figure, Player player)
         {
             var i = Images.Clone(new Rectangle(333 * figure, ((int)player - 1) * 333, 333, 333),
                         Images.PixelFormat);
@@ -44,7 +44,7 @@ namespace ChessOOP
             if (y < 8 && y >= 0 && x < 8 && x >= 0)
                 return true;
             return false;
-       }
+        }
 
         public virtual void MakeMove((int, int) nextPosition, ChessField field)
         {
@@ -54,6 +54,12 @@ namespace ChessOOP
                 field[CurrentPosition.Item1, CurrentPosition.Item2] = null;
                 field.NextPlayer();
             }
+
+        }
+
+        public virtual Figure Copy() 
+        {
+            return null;
         }
 
     }
