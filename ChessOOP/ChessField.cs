@@ -75,6 +75,5 @@ namespace ChessOOP
                 this[8 - y, x - 65] = value; 
             }
         }
-
     }
 }

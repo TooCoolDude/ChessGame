@@ -12,9 +12,9 @@ using System;
 using System.Reflection;
 
 [assembly: System.Reflection.AssemblyCompanyAttribute("ChessOOP")]
-[assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
+[assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5ec1cbdea811bb6ae7a2c7512df61484bc5e2f5a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d1f13089a12df61e810433f4e7d6feccf2b1d0a4")]
 [assembly: System.Reflection.AssemblyProductAttribute("ChessOOP")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ChessOOP")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

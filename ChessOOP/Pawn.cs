@@ -32,7 +32,7 @@ namespace ChessOOP
 
         bool isFirstMove = true;
 
-       public override List<(int, int)> GetPossibleMoves(ChessField field)
+        protected override List<(int, int)> GetPossibleMoves(ChessField field)
        {
             var y = CurrentPosition.Item1;
             var x = CurrentPosition.Item2;
@@ -69,12 +69,10 @@ namespace ChessOOP
 
         public override void MakeMove((int, int) nextPosition, ChessField field)
         {
-            if (GetPossibleMoves(field).Contains(nextPosition))
-            {
-                field[nextPosition.Item1, nextPosition.Item2] = field[CurrentPosition.Item1, CurrentPosition.Item2];
-                field[CurrentPosition.Item1, CurrentPosition.Item2] = null;
-                field.NextPlayer();
-            }
+            field[nextPosition.Item1, nextPosition.Item2] = field[CurrentPosition.Item1, CurrentPosition.Item2];
+            field[CurrentPosition.Item1, CurrentPosition.Item2] = null;
+            field[nextPosition.Item1, nextPosition.Item2].CurrentPosition = nextPosition;
+            field.NextPlayer();
             isFirstMove = false;
         }
 

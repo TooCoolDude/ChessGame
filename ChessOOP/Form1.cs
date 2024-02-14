@@ -132,10 +132,15 @@ namespace ChessOOP
                 selectedFigureButton = s;
                 SeePossibleMovesButtons(s);
             }
-            //Сделать ход, стереть возможные ходы
+            //Сделать ход, стереть возможные ходы, проверить мат
             else if ((figureOnButton[s] == null || figureOnButton[s].player != chessField.CurrentPlayer) && possibleMovesButtons.Contains(s) && selectedFigureButton != null)
             {
                 figureOnButton[selectedFigureButton].MakeMove(buttonsPositions[s], chessField);
+                if (figureOnButton[selectedFigureButton].IsGameOver(chessField))
+                {
+                    var gameOverForm = new GameOverForm();
+                    gameOverForm.Show();
+                }
                 ErasePossibleMovesButtons();
             }
             //Стереть возможные ходы нажатием на пустое место или не атакуемую фигуру противника
@@ -148,38 +153,14 @@ namespace ChessOOP
 
         private void SeePossibleMovesButtons(Button b)
         {
-            var moves = figureOnButton[b].GetPossibleMoves(chessField);
-            foreach (var move in moves)
+            var figureMoving = figureOnButton[b];
+            var legalMoves = figureMoving.GetMoves(chessField);
+
+            legalMoves.ForEach(move =>
             {
-                var chessCopy = chessField.Copy();
-                chessCopy[figureOnButton[b].CurrentPosition.Item1, figureOnButton[b].CurrentPosition.Item2].MakeMove(move, chessCopy);
-
-                bool legalMove = true;
-
-                for (var i = 0; i < 8; i++)
-                {
-                    for (var j = 0; j < 8; j++)
-                    {
-                        if (chessCopy[i, j] is { } figure)
-                        {
-                            var figureMoves = figure.GetPossibleMoves(chessCopy);
-                            if (figure.GetPossibleMoves(chessCopy).Any(to =>
-                            {
-                                return chessCopy[to.Item1, to.Item2] is King;
-                            }))
-                            {
-                                legalMove = false;
-                                break;
-                            }
-                        }
-                    }
-                }
-                if (legalMove)
-                {
-                    possibleMovesButtons.Add(buttons[move.Item1, move.Item2]);
-                    buttons[move.Item1, move.Item2].BackColor = Color.Green;
-                }
-            }
+                possibleMovesButtons.Add(buttons[move.Item1, move.Item2]);
+                buttons[move.Item1, move.Item2].BackColor = Color.Green;
+            });
             b.BackColor = Color.Yellow;
         }
 

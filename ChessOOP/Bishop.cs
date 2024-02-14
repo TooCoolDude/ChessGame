@@ -29,7 +29,7 @@ namespace ChessOOP
             return c;
         }
 
-        public override List<(int, int)> GetPossibleMoves(ChessField field)
+        protected override List<(int, int)> GetPossibleMoves(ChessField field)
         {
             var y = CurrentPosition.Item1;
             var x = CurrentPosition.Item2;
