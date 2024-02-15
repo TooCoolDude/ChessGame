@@ -20,7 +20,7 @@ namespace ChessOOP
 
         public (int, int) CurrentPosition;
 
-        private static Bitmap Images = new ("E:\\dev\\ChessOOP\\ChessOOP\\images\\chess.png");
+        private static Bitmap Images = new (Directory.GetCurrentDirectory() + "\\images\\chess.png");
 
         public Figure(Player player)
         { 

@@ -10,11 +10,19 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="images\chessicon.ico" />
+    <Content Include="images\chessicon.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="NewFolder\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="images\chess.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

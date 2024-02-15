@@ -38,7 +38,7 @@
             Name = "Chess";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Chess";
-            Icon = new Icon("E:\\dev\\ChessOOP\\ChessOOP\\images\\chessicon.ico");
+            Icon = new Icon(Directory.GetCurrentDirectory() + "\\images\\chessicon.ico");
             ResumeLayout(false);
         }
 
