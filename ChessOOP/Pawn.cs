@@ -10,17 +10,29 @@ namespace ChessOOP
     {
         public Pawn(Player player) : base(player) { }
 
-        public override Image Img 
+        public override Image Img
         {
             get
             {
-                return base.GetImage(5);
+                return player == Player.White ? GetWhiteImage : GetBlackImage;
             }
         }
-        
+
+        private static Image GetWhiteImage { get; } = GetImage(5, Player.White);
+
+        private static Image GetBlackImage { get; } = GetImage(5, Player.Black);
+
+        public override Figure Copy()
+        {
+            var c = new Pawn(this.player);
+            c.CurrentPosition = this.CurrentPosition;
+            c.isFirstMove = this.isFirstMove;
+            return c;
+        }
+
         bool isFirstMove = true;
 
-       public override List<(int, int)> GetPossibleMoves(ChessField field)
+        protected override List<(int, int)> GetPossibleMoves(ChessField field)
        {
             var y = CurrentPosition.Item1;
             var x = CurrentPosition.Item2;
@@ -57,12 +69,10 @@ namespace ChessOOP
 
         public override void MakeMove((int, int) nextPosition, ChessField field)
         {
-            if (GetPossibleMoves(field).Contains(nextPosition))
-            {
-                field[nextPosition.Item1, nextPosition.Item2] = field[CurrentPosition.Item1, CurrentPosition.Item2];
-                field[CurrentPosition.Item1, CurrentPosition.Item2] = null;
-                field.NextPlayer();
-            }
+            field[nextPosition.Item1, nextPosition.Item2] = field[CurrentPosition.Item1, CurrentPosition.Item2];
+            field[CurrentPosition.Item1, CurrentPosition.Item2] = null;
+            field[nextPosition.Item1, nextPosition.Item2].CurrentPosition = nextPosition;
+            field.NextPlayer();
             isFirstMove = false;
         }
 

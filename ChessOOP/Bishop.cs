@@ -14,11 +14,22 @@ namespace ChessOOP
         {
             get
             {
-                return base.GetImage(2);
+                return player == Player.White ? GetWhiteImage : GetBlackImage;
             }
         }
 
-        public override List<(int, int)> GetPossibleMoves(ChessField field)
+        private static Image GetWhiteImage { get; } = GetImage(2, Player.White);
+
+        private static Image GetBlackImage { get; } = GetImage(2, Player.Black);
+
+        public override Figure Copy()
+        {
+            var c = new Bishop(this.player);
+            c.CurrentPosition = this.CurrentPosition;
+            return c;
+        }
+
+        protected override List<(int, int)> GetPossibleMoves(ChessField field)
         {
             var y = CurrentPosition.Item1;
             var x = CurrentPosition.Item2;
