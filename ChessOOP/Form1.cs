@@ -114,26 +114,36 @@ namespace ChessOOP
         private void buttonClick(object sender, EventArgs e)
         {
             var s = (Button)sender;
+            //—тереть возможные ходы и отменить выбор фигуры
             if (figureOnButton[s] is Figure && figureOnButton[s].player == chessField.CurrentPlayer && s == selectedFigureButton && possibleMovesButtons.Count > 0)
             {
                 ErasePossibleMovesButtons();
             }
+            //¬ыбрать фигуру и показать возможные ходы
             else if (figureOnButton[s] is Figure && figureOnButton[s].player == chessField.CurrentPlayer && selectedFigureButton == null)
             {
                 selectedFigureButton = s;
                 SeePossibleMovesButtons(s);
             }
+            //¬ыбрать другую фигуру, показать возможные ходы
             else if (figureOnButton[s] is Figure && figureOnButton[s].player == chessField.CurrentPlayer && selectedFigureButton != null)
             {
                 ErasePossibleMovesButtons();
                 selectedFigureButton = s;
                 SeePossibleMovesButtons(s);
             }
+            //—делать ход, стереть возможные ходы, проверить мат
             else if ((figureOnButton[s] == null || figureOnButton[s].player != chessField.CurrentPlayer) && possibleMovesButtons.Contains(s) && selectedFigureButton != null)
             {
                 figureOnButton[selectedFigureButton].MakeMove(buttonsPositions[s], chessField);
+                if (figureOnButton[selectedFigureButton].IsGameOver(chessField))
+                {
+                    var gameOverForm = new GameOverForm();
+                    gameOverForm.Show();
+                }
                 ErasePossibleMovesButtons();
             }
+            //—тереть возможные ходы нажатием на пустое место или не атакуемую фигуру противника
             else if ((figureOnButton[s] == null || figureOnButton[s].player != chessField.CurrentPlayer) && !possibleMovesButtons.Contains(s) && selectedFigureButton != null)
             {
                 ErasePossibleMovesButtons();
@@ -143,12 +153,14 @@ namespace ChessOOP
 
         private void SeePossibleMovesButtons(Button b)
         {
-            var moves = figureOnButton[b].GetPossibleMoves(chessField);
-            foreach (var move in moves)
-            { 
+            var figureMoving = figureOnButton[b];
+            var legalMoves = figureMoving.GetMoves(chessField);
+
+            legalMoves.ForEach(move =>
+            {
                 possibleMovesButtons.Add(buttons[move.Item1, move.Item2]);
                 buttons[move.Item1, move.Item2].BackColor = Color.Green;
-            }
+            });
             b.BackColor = Color.Yellow;
         }
 
@@ -161,6 +173,5 @@ namespace ChessOOP
             PaintButton(selectedFigureButton);
             possibleMovesButtons = new();
         }
-
     }
 }

@@ -14,3 +14,5 @@ E:\dev\ChessOOP\ChessOOP\obj\Debug\net6.0-windows\refint\ChessOOP.dll
 E:\dev\ChessOOP\ChessOOP\obj\Debug\net6.0-windows\ChessOOP.pdb
 E:\dev\ChessOOP\ChessOOP\obj\Debug\net6.0-windows\ChessOOP.genruntimeconfig.cache
 E:\dev\ChessOOP\ChessOOP\obj\Debug\net6.0-windows\ref\ChessOOP.dll
+E:\dev\ChessOOP\ChessOOP\obj\Debug\net6.0-windows\ChessOOP.sourcelink.json
+E:\dev\ChessOOP\ChessOOP\obj\Debug\net6.0-windows\ChessOOP.GameOverForm.resources
