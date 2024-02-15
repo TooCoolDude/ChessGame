@@ -13,4 +13,8 @@
     <Content Include="images\chessicon.ico" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="NewFolder\" />
+  </ItemGroup>
+
 </Project>
